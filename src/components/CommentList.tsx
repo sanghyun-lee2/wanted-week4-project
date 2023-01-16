@@ -19,10 +19,10 @@ const CommentList = ({ commentListInfo }: childProps) => {
 
                <Content>{comment.content}</Content>
 
-               <Button>
-                  <a>수정</a>
-                  <a>삭제</a>
-               </Button>
+               <BtnDiv>
+                  <Button>수정</Button>
+                  <Button>삭제</Button>
+               </BtnDiv>
 
                <hr />
             </Comment>
@@ -53,16 +53,19 @@ const Content = styled.div`
    margin: 10px 0;
 `;
 
-const Button = styled.div`
-   text-align: right;
+const BtnDiv = styled.div`
+   display: flex;
+   align-items: right;
+   flex-direction: row-reverse;
+`;
+
+const Button = styled.button`
    margin: 10px 0;
-   & > a {
-      margin-right: 10px;
-      padding: 0.375rem 0.75rem;
-      border-radius: 0.25rem;
-      border: 1px solid lightgray;
-      cursor: pointer;
-   }
+   margin-right: 10px;
+   padding: 0.375rem 0.75rem;
+   border-radius: 0.25rem;
+   border: 1px solid lightgray;
+   cursor: pointer;
 `;
 
 export default CommentList;

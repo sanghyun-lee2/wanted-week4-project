@@ -1,14 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 
 function PageList() {
    const pageArray = [];
 
-   const [activePage, setActivePage] = useState(true);
+   //const [activePage, setActivePage] = useState(true);
 
    pageArray.push(
       // 임시로 페이지 하나만 설정했습니다.
-      <Page key="1" active={activePage}>
+      <Page key="1" active={true}>
          1
       </Page>
    );
