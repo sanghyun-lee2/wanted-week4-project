@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import PageList from "../components/PageList";
 import { commentAction } from "../redux/commentsSlice";
 import { useAppSelector, useAppDispatch } from "../redux/hooks";

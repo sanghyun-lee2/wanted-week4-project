@@ -4,9 +4,10 @@ import { CommentInfo } from "../types";
 
 interface childProps {
    commentListInfo: Array<CommentInfo>;
+   setActivePage: (idx: number) => void;
 }
 
-const CommentList = ({ commentListInfo }: childProps) => {
+const CommentList = ({ commentListInfo, setActivePage }: childProps) => {
    return (
       <>
          {commentListInfo.map((comment, key) => (

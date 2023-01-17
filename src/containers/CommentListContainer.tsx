@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { getAllComments, getComments } from "../redux/commentsSlice";
+import { getAllComments, getComments, commentAction } from "../redux/commentsSlice";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import CommentList from "../components/CommentList";
 
@@ -15,7 +15,11 @@ function CommentListContainer() {
       dispatch(getComments(activePage));
    }, [activePage]);
 
-   return <CommentList commentListInfo={commentList} />;
+   const setActivePage = (idx: number) => {
+      dispatch(commentAction.setActivePageNum(idx));
+   };
+
+   return <CommentList commentListInfo={commentList} setActivePage={setActivePage} />;
 }
 
 export default CommentListContainer;

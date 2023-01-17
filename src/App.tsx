@@ -5,8 +5,6 @@ import FormContainer from "./containers/FormContainer";
 
 import { Provider } from "react-redux";
 import store from "./redux/store";
-import { AppDispatch } from "./redux/store";
-import { useDispatch } from "react-redux";
 
 function App() {
    return (
