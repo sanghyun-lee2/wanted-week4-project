@@ -1,38 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { getAllComments, getComments } from "../redux/commentsSlice";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import CommentList from "../components/CommentList";
-import { CommentInfo } from "../types";
-import { commentAPI } from "../api/api";
 
 function CommentListContainer() {
-   const [commentList, setCommentList] = useState<Array<CommentInfo>>([]);
-
-   const getCommentList = async () => {
-      try {
-         const result = await commentAPI.getComments(1, 4, "desc", "sort");
-         setCommentList(result.data);
-      } catch (e) {
-         console.log(e);
-      }
-   };
-
-   const delComment = async (id: string) => {
-      try {
-         const result = await commentAPI.getComments(1, 4, "desc", "sort");
-         setCommentList(result.data);
-      } catch (e) {
-         console.log(e);
-      }
-   };
+   const { commentList, activePage } = useAppSelector((state) => state.commentSlice);
+   const dispatch = useAppDispatch();
 
    useEffect(() => {
-      getCommentList();
-   }, []);
+      dispatch(getAllComments());
+   }, [dispatch]);
 
-   return (
-      <div>
-         <CommentList commentListInfo={commentList} />
-      </div>
-   );
+   useEffect(() => {
+      dispatch(getComments(activePage));
+   }, [activePage]);
+
+   return <CommentList commentListInfo={commentList} />;
 }
 
 export default CommentListContainer;

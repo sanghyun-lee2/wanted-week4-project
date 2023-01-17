@@ -1,4 +1,5 @@
 import axios from "axios";
+import { CommentGetReqInfo } from "../types";
 
 export const base = axios.create({
    baseURL: `${process.env.REACT_APP_BASE_URL}`,
@@ -8,6 +9,9 @@ export const base = axios.create({
 });
 
 export const commentAPI = {
-   getComments: (pageNum: number, limitNum: number, orderStr: string, sortStr: string) =>
-      base.get(`/comments?_page=${pageNum}&_limit=${limitNum}&_sort=${sortStr}`),
+   getAllComments: () => base.get(`/comments`),
+   getComments: (req: CommentGetReqInfo) =>
+      base.get(
+         `/comments?_page=${req.pageNum}&_limit=${req.limitNum}&_order=${req.orderStr}&_sort=${req.sortStr}`
+      ),
 };

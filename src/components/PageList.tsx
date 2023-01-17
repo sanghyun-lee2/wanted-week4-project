@@ -1,17 +1,26 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
-function PageList() {
-   const pageArray = [];
+interface childProps {
+   pageNum: number;
+   activePage: number;
+   setActivePage: (idx: number) => void;
+}
 
-   //const [activePage, setActivePage] = useState(true);
+function PageList({ pageNum, activePage, setActivePage }: childProps) {
+   const [pageArray, setPageArray] = useState<JSX.Element[]>();
 
-   pageArray.push(
-      // 임시로 페이지 하나만 설정했습니다.
-      <Page key="1" active={true}>
-         1
-      </Page>
-   );
+   useEffect(() => {
+      let newPageArray = [];
+      for (let i = 1; i <= pageNum; i++) {
+         newPageArray.push(
+            <Page key={i} active={activePage === i ? true : false} onClick={() => setActivePage(i)}>
+               {i}
+            </Page>
+         );
+      }
+      setPageArray(newPageArray);
+   }, [pageNum, activePage]);
 
    return <PageListStyle>{pageArray}</PageListStyle>;
 }
@@ -27,6 +36,7 @@ const Page = styled.button<{ active: boolean }>`
    font-size: 1rem;
    line-height: 1.5;
    border: 1px solid lightgray;
+   cursor: pointer;
    ${({ active }) =>
       active &&
       `
